@@ -2,8 +2,8 @@ const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 router.get('/', (req, res) => {
- 
-  Product.findAll ({
+
+  Product.findAll({
     attributes: ["id", "product-name", "price", "stock", "category_id"],
     include: [
       {
@@ -17,44 +17,44 @@ router.get('/', (req, res) => {
       },
     ],
   })
-  .then((dbproductData)=> res.json(dbproductData))
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+    .then((dbproductData) => res.json(dbproductData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
- 
+
 router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
       id: req.params.id
     },
     include: [
-    {
-      model: Category,
-      attributes: ["id", "category_name"],
-    },
-    {
-      model: Tag,
-      through: ProductTag,
-      as: "tags",
-    },
-  ],
+      {
+        model: Category,
+        attributes: ["id", "category_name"],
+      },
+      {
+        model: Tag,
+        through: ProductTag,
+        as: "tags",
+      },
+    ],
   })
-  .then((dbproductData) => {
-    if (!dbproductData) {
-      res
-      .status(404)
-      .json({ message: "There was no product found with this id."})
-      return;
-    }
-    res.json(dbproductData);
-  })
-  .catch((err)=> {
-    console.log(err);
-    res.status(500).json(err);
-  });
-  });
+    .then((dbproductData) => {
+      if (!dbproductData) {
+        res
+          .status(404)
+          .json({ message: "There was no product found with this id." })
+        return;
+      }
+      res.json(dbproductData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // create new product
 router.post('/', (req, res) => {
@@ -133,15 +133,22 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   Product.destroy({
     where: {
-      id:req.params.id,
+      id: req.params.id,
     },
   }),
-  .then((dbproductData)=> {
+  .then((dbproductData) => {
     if (!dbproductData) {
-      res.status(404).json({ message: "There was no product with this id."});
-      return
+      res
+        .status(404)
+        .json({ message: "There was no product with this id." });
+      return;
     }
+    res.json(dbproductData);
   })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 module.exports = router;

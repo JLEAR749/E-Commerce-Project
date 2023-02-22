@@ -13,7 +13,7 @@ id: {
   primaryKey: true,
   autoIncrement: true
 },
-Category_name: {
+category_name: {
   type: DataTypes.STRING,
   allowNull: false
 }

@@ -14,7 +14,7 @@ id: {
   autoIncrement: true
 },
 Category_name: {
-  type: DataTypes.string,
+  type: DataTypes.STRING,
   allowNull: false
 }
   },

@@ -1,7 +1,7 @@
 # E-Commerce-Project
   
 ##Screenshot
-![image![image](https://user-images.githubusercontent.com/112676566/223590182-93bda82b-757d-477d-ad95-d6612408a37e.png)
+(https://user-images.githubusercontent.com/112676566/223590182-93bda82b-757d-477d-ad95-d6612408a37e.png)
 
 ## Video Walkthrough
 https://drive.google.com/file/d/1iOhuzIdYQHZFe0NkBbBFMD49vfMLVmT5/view
